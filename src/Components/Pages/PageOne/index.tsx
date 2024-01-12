@@ -1,10 +1,10 @@
 import React from "react";
-import Header from "./Header";
+import { Container } from "./styles";
 
 const PageOne: React.FC = () => {
     return(
         <>
-            <Header />
+            <Container />
         </>
     )
 }

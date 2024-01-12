@@ -1,6 +1,6 @@
 
 import { BrowserRouter } from "react-router-dom"
-import MainRoutes from "./routes"
+import MainRoutes from "./Components/Pages/routes"
 
 function App() {
   
