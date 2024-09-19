@@ -1,5 +1,5 @@
-import { styled, keyframes } from "styled-components"
-import ImageBackground from "../../assets/Image.jpg"
+import { styled, keyframes } from "styled-components";
+import ImageBackground from "../../../assets/Image.jpg";
 
 export const Container = styled.div `
 
@@ -7,7 +7,7 @@ export const Container = styled.div `
 
 export const Background = styled.div `
     width: 100vw;
-    height: 93vh;
+    height: 100vh;
     background-image: url(${ImageBackground});
     background-position: center;
     background-size: cover;
