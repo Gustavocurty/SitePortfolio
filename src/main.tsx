@@ -1,10 +1,44 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
 import './index.css'
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+import Home from './screens/Home.tsx';
+import Contact from './screens/Contact.tsx';
+import Portfolio from './screens/Portfolio.tsx';
+import App from './App.tsx';
+import ErrorPage from './screens/error/Error.tsx';
+import Skills from './screens/Skills.tsx';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path:"/",
+        element: <Home />
+      },
+      {
+        path:"/contatos",
+        element: <Contact />
+      },
+      {
+        path:"/portfolio",
+        element: <Portfolio />
+      },
+      {
+        path:"/skills",
+        element: <Skills />
+      },
+    ]
+  }
+]);
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <RouterProvider router={router} />
+  </StrictMode>,
 )
