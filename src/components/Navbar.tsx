@@ -8,7 +8,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 5); // Altera a navbar após 100px de rolagem
+      setIsScrolled(window.scrollY > 100); // Altera a navbar após 100px de rolagem
     };
 
     window.addEventListener('scroll', handleScroll);
