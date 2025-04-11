@@ -9,7 +9,6 @@ import Contact from './screens/Contact.tsx';
 import Portfolio from './screens/Portfolio.tsx';
 import App from './App.tsx';
 import ErrorPage from './screens/error/Error.tsx';
-import Skills from './screens/Skills.tsx';
 
 const router = createBrowserRouter([
   {
@@ -28,10 +27,6 @@ const router = createBrowserRouter([
       {
         path:"/portfolio",
         element: <Portfolio />
-      },
-      {
-        path:"/skills",
-        element: <Skills />
       },
     ]
   }

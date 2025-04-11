@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+/* Estilos para o menu suspenso */
+@layer utilities {
+  .backdrop-blur-md {
+    backdrop-filter: blur(12px);
+  }
+}
+
+/* Evitar que o conteúdo da página role quando o menu mobile está aberto */
+body.menu-open {
+  overflow: hidden;
+}
