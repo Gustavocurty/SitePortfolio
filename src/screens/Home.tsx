@@ -5,36 +5,60 @@ import { Card, CardContent } from "../components/card"
 import { Badge } from "../components/badge"
 import { FileText, Mail } from "../components/icons"
 import backgroundImage from "../assets/backgroundImage.jpg"
+import curriculoPDF from "../assets/Curriculo.pdf"
 
 const skills = [
   { name: "React", level: "Avançado" },
   { name: "TypeScript", level: "Avançado" },
   { name: "JavaScript", level: "Avançado" },
-  { name: "Tailwind CSS", level: "Avançado" },
+  { name: "Tailwind CSS", level: "Intermediário" },
   { name: "Node.js", level: "Intermediário" },
   { name: "Next.js", level: "Intermediário" },
   { name: "Git", level: "Avançado" },
   { name: "HTML/CSS", level: "Avançado" },
+  { name: "Flutter", level: "Intermediário" },
   { name: "SQL", level: "Intermediário" },
   { name: "MongoDB", level: "Básico" },
+  { name: "Python", level: "Intermediário" },
+  { name: "OpenCV", level: "Básico" },
+  { name: "Styled-components", level: "Avançado" },
+  { name: "Figma", level: "Básico" },
 ]
 
 const experiences = [
   {
     title: "Desenvolvedor Front-end",
-    company: "Empresa XYZ",
+    company: "Serra Júnior Engenharia",
     period: "2022 - Presente",
-    description: "Desenvolvimento de interfaces responsivas utilizando React, TypeScript e Tailwind CSS.",
+    description: "Desenvolvimento de sites e aplicações web e mobile utilizando React, Flutter e ferramentas modernas como Tailwind CSS e TypeScript, com foco em soluções para clientes e projetos internos da empresa.",
   },
   {
-    title: "Desenvolvedor Web",
-    company: "Startup ABC",
-    period: "2020 - 2022",
-    description: "Criação de aplicações web com foco em experiência do usuário e performance.",
+    title: "Bolsista Proatec - LTI",
+    company: "Universidade do Estado do Rio de Janeiro - UERJ-IRPJ",
+    period: "2024 - 2025",
+    description: "Desenvolvimento de soluções com visão computacional, processamento de imagens e análise de metadados utilizando Python e bibliotecas como Pillow, NumPy e OpenCV.",
+  },
+  {
+    title: "Auxiliar Administrativo",
+    company: "Mercado do Eraldo",
+    period: "2018 - 2021",
+    description: "",
   },
 ]
 
+
 const Home = () => {
+  // Função para lidar com o download do currículo
+  const handleDownloadCV = () => {
+    // Criar um link temporário
+    const link = document.createElement("a")
+    link.href = curriculoPDF
+    link.download = "Curriculo_Gustavo_Curty.pdf"
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
   return (
     <>
       {/* Hero Section */}
@@ -84,7 +108,7 @@ const Home = () => {
           </svg>
         </div>
       </motion.div>
-      
+
       {/* About Section */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 md:px-6">
@@ -97,13 +121,13 @@ const Home = () => {
                 entregar produtos de alta qualidade.
               </p>
               <p className="text-lg text-gray-700 mb-8">
-                Estudante em Engenharia de Computação na, tenho trabalhado em projetos desafiadores que me permitiram aprimorar
-                minhas habilidades técnicas e de resolução de problemas. Estou sempre em busca de novos desafios e
-                oportunidades para crescer profissionalmente.
+                Estudante em Engenharia de Computação na, tenho trabalhado em projetos desafiadores que me permitiram
+                aprimorar minhas habilidades técnicas e de resolução de problemas. Estou sempre em busca de novos
+                desafios e oportunidades para crescer profissionalmente.
               </p>
               <div className="flex gap-4">
-
-                <Button variant="outline" className="gap-2">
+                {/* Botão de download do currículo com a função de download */}
+                <Button variant="outline" className="gap-2 cursor-pointer" onClick={handleDownloadCV}>
                   <FileText size={18} />
                   Download CV
                 </Button>

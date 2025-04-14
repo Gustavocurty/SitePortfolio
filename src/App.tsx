@@ -1,5 +1,3 @@
-import React from 'react'
-
 // Estrutura main
 import { Outlet } from 'react-router-dom'
 

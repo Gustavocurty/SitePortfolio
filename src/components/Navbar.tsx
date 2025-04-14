@@ -1,11 +1,18 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const location = useLocation()
+
+  // Verifica se estamos na página de contatos ou portfolio
+  const isContactPage = location.pathname === "/contatos"
+  const isPortfolioPage = location.pathname === "/portfolio"
+
+  const isWhiteTextPage = isContactPage || isPortfolioPage
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,7 +25,6 @@ const Navbar = () => {
     }
   }, [])
 
-  // Fecha o menu quando a tela é redimensionada para desktop
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
@@ -32,7 +38,6 @@ const Navbar = () => {
     }
   }, [])
 
-  // Bloqueia o scroll quando o menu está aberto
   useEffect(() => {
     if (isMenuOpen) {
       document.body.classList.add("menu-open")
@@ -49,52 +54,69 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen)
   }
 
+  const getTextColorClass = () => {
+    if (isWhiteTextPage) {
+      return "text-white"
+    }
+    return isScrolled ? "text-white" : "text-black"
+  }
+
+  const textColorClass = getTextColorClass()
+
   return (
     <div
       className={`fixed w-full flex items-center justify-between px-6 transition-all duration-500 z-50 ${
-        isScrolled ? "bg-black text-white shadow-md h-16" : "bg-transparent text-black backdrop-blur-sm h-18"   
+        isScrolled ? "bg-black text-white shadow-md h-16" : `bg-transparent ${textColorClass} backdrop-blur-sm h-18`
       }`}
     >
       {/* Logo */}
       <div className="flex-1 md:flex-none">
-        <p onClick={() => alert("Curtyu né!")} className="text-xl font-bold cursor-pointer">
+        <p
+          onClick={() => alert("Curtyu né!")}
+          className={`text-xl font-bold cursor-pointer ${
+            isWhiteTextPage && !isScrolled ? "text-white" : ""
+          }`}
+        >
           Curtyu
         </p>
       </div>
 
-      {/* Links de navegação para desktop - centralizados */}
+      {/* Links de navegação para desktop */}
       <nav className="hidden md:flex justify-center flex-1">
         <div className="flex space-x-2">
-          <Link
-            to={"/"}
-            className={`${
-              isScrolled ? "hover:bg-gray-200 hover:text-black font-bold" : "hover:bg-white/20 font-bold"
-            } rounded-md px-6 py-2 transition-colors`}
-          >
-            Home
-          </Link>
-          <Link
-            to={"/portfolio"}
-            className={`${
-              isScrolled ? "hover:bg-gray-200 hover:text-black font-bold" : "hover:bg-white/20 font-bold"
-            } rounded-md px-6 py-2 transition-colors`}
-          >
-            Portfolio
-          </Link>
-          <Link
-            to={"/contatos"}
-            className={`${
-              isScrolled ? "hover:bg-gray-200 hover:text-black font-bold" : "hover:bg-white/20 font-bold"
-            } rounded-md px-6 py-2 transition-colors`}
-          >
-            Contato
-          </Link>
+          {["/", "/portfolio", "/contatos"].map((path) => {
+            const isActivePage = location.pathname === path
+            const isWhiteBackground = isWhiteTextPage && !isScrolled
+
+            return (
+              <Link
+                key={path}
+                to={path}
+                className={`${
+                  isWhiteBackground
+                    ? "text-white hover:bg-white/20 font-bold"
+                    : isScrolled
+                    ? "hover:bg-gray-200 hover:text-black font-bold"
+                    : "hover:bg-white/20 font-bold"
+                } rounded-md px-6 py-2 transition-colors`}
+              >
+                {path === "/" ? "Home" : path === "/portfolio" ? "Portfolio" : "Contato"}
+              </Link>
+            )
+          })}
         </div>
       </nav>
 
-      {/* Botão do menu hambúrguer para mobile */}
-      <button onClick={toggleMenu} className={isScrolled ? "md:hidden text-white focus:outline-none" : "md:hidden text-black focus:outline-none"} aria-label="Toggle menu">
-        <svg  
+      {/* Botão hambúrguer */}
+      <button
+        onClick={toggleMenu}
+        className={`md:hidden focus:outline-none ${
+          isWhiteTextPage && !isScrolled ? "text-white" : isScrolled ? "text-white" : "text-black"
+        }`}
+        aria-label="Toggle menu"
+      >
+        {/* Ícone */}
+        <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6"
           fill="none"
@@ -109,7 +131,7 @@ const Navbar = () => {
         </svg>
       </button>
 
-      {/* Menu suspenso para mobile */}
+      {/* Menu Mobile */}
       <div
         className={`absolute top-full left-0 right-0 bg-black/90 backdrop-blur-md transition-all duration-300 overflow-hidden md:hidden ${
           isMenuOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
@@ -118,28 +140,28 @@ const Navbar = () => {
         <div className="flex flex-col p-4 space-y-3">
           <Link
             to={"/"}
-            className="px-4 py-2 hover:bg-white/20 rounded-md transition-colors"
+            className="text-white px-4 py-2 hover:bg-white/20 rounded-md transition-colors"
             onClick={() => setIsMenuOpen(false)}
           >
             Home
           </Link>
           <Link
-            to={"./skills"}
-            className="px-4 py-2 hover:bg-white/20 rounded-md transition-colors"
+            to={"/skills"}
+            className="text-white px-4 py-2 hover:bg-white/20 rounded-md transition-colors"
             onClick={() => setIsMenuOpen(false)}
           >
             Skills
           </Link>
           <Link
             to={"/portfolio"}
-            className="px-4 py-2 hover:bg-white/20 rounded-md transition-colors"
+            className="text-white px-4 py-2 hover:bg-white/20 rounded-md transition-colors"
             onClick={() => setIsMenuOpen(false)}
           >
             Portfolio
           </Link>
           <Link
             to={"/contatos"}
-            className="px-4 py-2 hover:bg-white/20 rounded-md transition-colors"
+            className="text-white px-4 py-2 hover:bg-white/20 rounded-md transition-colors"
             onClick={() => setIsMenuOpen(false)}
           >
             Contatos
