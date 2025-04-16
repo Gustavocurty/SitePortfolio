@@ -8,41 +8,41 @@ import backgroundImage from "../assets/backgroundImage.jpg"
 import curriculoPDF from "../assets/Curriculo.pdf"
 
 const skills = [
-  { name: "React", level: "Avançado" },
-  { name: "TypeScript", level: "Avançado" },
-  { name: "JavaScript", level: "Avançado" },
+  { name: "Git", level: "Avançado" },
+  { name: "HTML/CSS", level: "Avançado" },
+  { name: "React", level: "Intermediário" },
+  { name: "TypeScript", level: "Intermediário" },
+  { name: "JavaScript", level: "Intermediário" },
   { name: "Tailwind CSS", level: "Intermediário" },
   { name: "Node.js", level: "Intermediário" },
   { name: "Next.js", level: "Intermediário" },
-  { name: "Git", level: "Avançado" },
-  { name: "HTML/CSS", level: "Avançado" },
   { name: "Flutter", level: "Intermediário" },
-  { name: "SQL", level: "Intermediário" },
-  { name: "MongoDB", level: "Básico" },
-  { name: "Python", level: "Intermediário" },
-  { name: "OpenCV", level: "Básico" },
-  { name: "Styled-components", level: "Avançado" },
+  { name: "Dart", level: "Intermediário" },
+  { name: "Styled-components", level: "Intermediário" },
+  { name: "Python", level: "Básico" },
   { name: "Figma", level: "Básico" },
+  { name: "SQL", level: "Básico" },
+  { name: "MongoDB", level: "Básico" },
 ]
 
 const experiences = [
   {
     title: "Desenvolvedor Front-end",
-    company: "Serra Júnior Engenharia",
-    period: "2022 - Presente",
-    description: "Desenvolvimento de sites e aplicações web e mobile utilizando React, Flutter e ferramentas modernas como Tailwind CSS e TypeScript, com foco em soluções para clientes e projetos internos da empresa.",
+    company: "Serra Jr Engenharia",
+    period: "2022 - 2025",
+    description: "Desenvolvimento de sites e aplicações web e mobile utilizando React, React Native e ferramentas modernas como Tailwind CSS e TypeScript, com foco em soluções para clientes e projetos internos da empresa.",
   },
   {
     title: "Bolsista Proatec - LTI",
     company: "Universidade do Estado do Rio de Janeiro - UERJ-IRPJ",
     period: "2024 - 2025",
-    description: "Desenvolvimento de soluções com visão computacional, processamento de imagens e análise de metadados utilizando Python e bibliotecas como Pillow, NumPy e OpenCV.",
+    description: "Desenvolvimento e manutenção de projetos em flutter, além de participação ativa em pesquisa e implementação de soluções.",
   },
   {
     title: "Auxiliar Administrativo",
     company: "Mercado do Eraldo",
-    period: "2018 - 2021",
-    description: "",
+    period: "2018 - 2022",
+    description: "Atendimento ao público e suporte administrativo.",
   },
 ]
 
@@ -50,7 +50,6 @@ const experiences = [
 const Home = () => {
   // Função para lidar com o download do currículo
   const handleDownloadCV = () => {
-    // Criar um link temporário
     const link = document.createElement("a")
     link.href = curriculoPDF
     link.download = "Curriculo_Gustavo_Curty.pdf"
