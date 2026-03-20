@@ -7,6 +7,16 @@ import { Button } from "../components/button"
 
 import backgroundPortf from "../assets/backgroundPortf.jpg"
 
+import AquaFri from "../assets/AquaFri/home.png"
+import ClimaApp from "../assets/ClimaApp/home.png"
+import RickMorty from "../assets/RickMorty/home.png"
+
+import Dashboard from "../assets/Dashboard/home.png"
+import FlappyHome from "../assets/FlapCharizard/home.png"
+import RunnerHome from "../assets/RunnerDipper/home.png"
+import Main from "../assets/Portfolio/main.png"
+import ppgctm from "../assets/ppgctm/foto1.png"
+
 // Dados dos projetos
 const projects = [
   {
@@ -14,8 +24,8 @@ const projects = [
     title: "Aplicativo ClimaApp",
     description:
       "Aplicativo mobile desenvolvido em Flutter para exibir dados meteorológicos, com imagens do clima, medidas de temperatura e precipitação, e animações de fundo dinâmicas conforme a temperatura.",
-    image: "/placeholder.svg?height=600&width=800",
-    technologies: ["Mobile", "Flutter", "Dart", "REST API", "HTTP"],
+    image: ClimaApp,
+    technologies: ["Mobile", "Flutter"],
     demoLink: "https://github.com/gustavocurty/app-clima",
     codeLink: "https://github.com/gustavocurty/app-clima",
     featured: true,
@@ -25,51 +35,40 @@ const projects = [
     title: "Plataforma AquaFriburgo",
     description:
       "App desenvolvido em hackathon para incentivar o uso consciente da água em Nova Friburgo. Inclui gamificação, denúncias de vazamentos, acompanhamento de consumo e ranking de moradores.",
-    image: "/placeholder.svg?height=600&width=800",
-    technologies: ["React Native", "Context API", "Expo"],
+    image: AquaFri,
+    technologies: ["React Native"],
     demoLink: "https://github.com/gustavocurty/hackathon-agua",
     codeLink: "https://github.com/gustavocurty/hackathon-agua",
     featured: true,
   },
   {
     id: 3,
+    title: "Website PPGCTM-UERJ",
+    description:
+      "Website desenvolvido para o programa de pós graduação em Ciência e Tecnologia dos Materiais da Universidade do Estado do Rio de Janeiro UERJ.",
+    image: ppgctm,
+    technologies: ["Wordpress"],
+    demoLink: "https://github.com/gustavocurty/hackathon-agua",
+    codeLink: "https://github.com/gustavocurty/hackathon-agua",
+    featured: true,
+  },
+  {
+    id: 4,
     title: "Dashboard de Disponibilidade",
     description:
       "Ferramenta web para visualização de horários em comum entre pessoas, com sistema de cards coloridos que indicam disponibilidade, filtro de seleção e organização visual via styled-components.",
-    image: "/placeholder.svg?height=600&width=800",
-    technologies: ["React", "Styled-components", "TypeScript"],
+    image: Dashboard,
+    technologies: ["React"],
     demoLink: "https://github.com/gustavocurty/disponibilidade-dashboard",
     codeLink: "https://github.com/gustavocurty/disponibilidade-dashboard",
     featured: false,
   },
   {
-    id: 4,
+    id: 5,
     title: "Aplicativo Rick & Morty",
     description:
       "Aplicativo desenvolvido para testar meus conhecimentos em flutter, com uma página de pesquisa de personagens, resgatando de uma API.",
-    image: "/placeholder.svg?height=600&width=800",
-    technologies: ["Flutter", "Mobile"],
-    demoLink: "https://github.com/gustavocurty/image-analysis-project",
-    codeLink: "https://github.com/gustavocurty/image-analysis-project",
-    featured: false,
-  },
-  {
-    id: 5,
-    title: "Aplicativo Appfy",
-    description:
-      "Aplicativo desenvolvido para um treinamento, onde voce pesquisa um cantor(a) e ele retorna uma parte de uma letra de qualquer música desse(a) cantor(a).",
-    image: "/placeholder.svg?height=600&width=800",
-    technologies: ["Flutter", "Mobile"],
-    demoLink: "https://github.com/gustavocurty/image-analysis-project",
-    codeLink: "https://github.com/gustavocurty/image-analysis-project",
-    featured: false,
-  },
-  {
-    id: 5,
-    title: "Aplicativo Biscoito da sorte",
-    description:
-      "Aplicativo desenvolvido para um treinamento, onde voce clica no biscoito no centro da tela, há uma animação dele quebrando e gera uma frase motivadora.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: RickMorty,
     technologies: ["Flutter", "Mobile"],
     demoLink: "https://github.com/gustavocurty/image-analysis-project",
     codeLink: "https://github.com/gustavocurty/image-analysis-project",
@@ -77,33 +76,44 @@ const projects = [
   },
   {
     id: 6,
-    title: "Portfólio Interativo",
+    title: "Aplicativo Appfy",
     description:
-      "Portfólio pessoal desenvolvido em Next.js com foco em performance, responsividade e design limpo, apresentando projetos, habilidades e experiências.",
+      "Aplicativo desenvolvido para um treinamento, onde voce pesquisa um cantor(a) e ele retorna uma parte de uma letra de qualquer música desse(a) cantor(a).",
     image: "/placeholder.svg?height=600&width=800",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
-    demoLink: "https://gustavocurty.dev",
-    codeLink: "https://github.com/gustavocurty/portfolio",
-    featured: true,
+    technologies: ["React Native", "Mobile"],
+    demoLink: "https://github.com/gustavocurty/image-analysis-project",
+    codeLink: "https://github.com/gustavocurty/image-analysis-project",
+    featured: false,
   },
   {
     id: 7,
-    title: "Jogo PyGames 1",
+    title: "Portfólio Pessoal",
     description:
-      "Um jogo desenvolvido com PyGames, onde que o jogador tem que bater as asas sem colidir na parede.",
-    image: "/placeholder.svg?height=600&width=800",
-    technologies: ["Python", "Mobile"],
+      "Portfólio pessoal desenvolvido em Next.js com foco em performance, responsividade e design limpo, apresentando projetos, habilidades e experiências.",
+    image: Main,
+    technologies: ["React"],
     demoLink: "https://gustavocurty.dev",
     codeLink: "https://github.com/gustavocurty/portfolio",
     featured: true,
   },
   {
     id: 8,
-    title: "Jogo PyGames 2",
+    title: "Jogo PyGames Flappy Charizard",
+    description:
+      "Um jogo desenvolvido com PyGames, onde que o jogador tem que bater as asas sem colidir na parede.",
+    image: FlappyHome,
+    technologies: ["Python"],
+    demoLink: "https://gustavocurty.dev",
+    codeLink: "https://github.com/gustavocurty/portfolio",
+    featured: true,
+  },
+  {
+    id: 9,
+    title: "Jogo PyGames Runner Dipper",
     description:
       "Um jogo desenvolvido com PyGames, onde que o jogador tem que pular e abaixar para desviar de objetos que vão em direção a ele.",
-    image: "/placeholder.svg?height=600&width=800",
-    technologies: ["Python", "Mobile"],
+    image: RunnerHome,
+    technologies: ["Python"],
     demoLink: "https://gustavocurty.dev",
     codeLink: "https://github.com/gustavocurty/portfolio",
     featured: true,
@@ -112,7 +122,7 @@ const projects = [
 
 
 // Categorias para filtrar os projetos
-const categories = ["Todos", "React", "Next.js", "Node.js", "TypeScript", "Mobile"]
+const categories = ["Todos", "React","Wordpress", "Mobile", "Flutter", "Python", "React Native"]
 
 const Portfolio = () => {
   const [filter, setFilter] = useState("Todos")
