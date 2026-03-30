@@ -126,7 +126,6 @@ const categories = ["Todos", "React","Wordpress", "Mobile", "Flutter", "Python",
 
 const Portfolio = () => {
   const [filter, setFilter] = useState("Todos")
-  const [hoveredProject, setHoveredProject] = useState<number | null>(null)
 
   // Filtra os projetos com base na categoria selecionada
   const filteredProjects =
@@ -234,9 +233,9 @@ const Portfolio = () => {
               <motion.div
                 key={project.id}
                 variants={projectVariants}
-                onMouseEnter={() => setHoveredProject(project.id)}
-                onMouseLeave={() => setHoveredProject(null)}
-                className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl relative group"
+                whileHover={{ y: -10, scale: 1.01 }}
+                transition={{ type: "spring", stiffness: 220, damping: 18 }}
+                className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl relative group"
               >
                 {project.featured && (
                   <div className="absolute top-4 left-4 z-10">
@@ -252,15 +251,13 @@ const Portfolio = () => {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div
-                    className={`absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center gap-4 transition-opacity duration-300 ${
-                      hoveredProject === project.id ? "opacity-100" : "opacity-0"
-                    }`}
+                    className="absolute inset-0 bg-white/0 dark:bg-black/0 flex items-center justify-center gap-4 transition-all duration-300 opacity-0 group-hover:opacity-100"
                   >
                     <a
                       href={project.demoLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-white text-black p-3 rounded-full hover:bg-gray-200 transition-colors"
+                      className="bg-white/95 text-black p-3 rounded-full shadow-lg hover:bg-white transition-all duration-300 hover:-translate-y-1"
                     >
                       <ExternalLink size={20} />
                     </a>
@@ -268,7 +265,7 @@ const Portfolio = () => {
                       href={project.codeLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-white text-black p-3 rounded-full hover:bg-gray-200 transition-colors"
+                      className="bg-white/95 text-black p-3 rounded-full shadow-lg hover:bg-white transition-all duration-300 hover:-translate-y-1"
                     >
                       <Github size={20} />
                     </a>

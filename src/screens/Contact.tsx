@@ -52,13 +52,23 @@ const Contact = () => {
   }
 
   return (
-    <div className="min-h-screen pt-20 bg-gradient-to-b from-gray-900 to-gray-800 text-white">
+    <div className="min-h-screen pt-20 bg-gradient-to-b from-gray-900 to-gray-800 text-white relative overflow-hidden">
+      <motion.div
+        className="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-primary/20 blur-3xl pointer-events-none"
+        animate={{ x: [0, 30, 0], y: [0, 20, 0] }}
+        transition={{ duration: 12, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute bottom-0 -right-16 w-80 h-80 rounded-full bg-blue-400/10 blur-3xl pointer-events-none"
+        animate={{ x: [0, -25, 0], y: [0, -20, 0] }}
+        transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+      />
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="container mx-auto px-4 md:px-6 py-12 text-center"
+        className="container mx-auto px-4 md:px-6 py-12 text-center relative z-10"
       >
         <h1 className="text-4xl md:text-5xl font-bold mb-4">Entre em Contato</h1>
         <p className="text-xl text-gray-300 max-w-2xl mx-auto">
@@ -68,7 +78,7 @@ const Contact = () => {
       </motion.div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 md:px-6 py-8">
+      <div className="container mx-auto px-4 md:px-6 py-8 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-start">
           
           {/* Contact Info */}
@@ -80,7 +90,11 @@ const Contact = () => {
           >
             {/* Contact Cards */}
             <div className="grid gap-6">
-              <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg flex items-start gap-4">
+              <motion.div
+                whileHover={{ y: -6, scale: 1.01 }}
+                transition={{ type: "spring", stiffness: 240, damping: 18 }}
+                className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg flex items-start gap-4 border border-white/5"
+              >
                 <div className="bg-primary/20 p-3 rounded-full">
                   <Mail className="h-6 w-6 text-primary" />
                 </div>
@@ -95,9 +109,13 @@ const Contact = () => {
                     <ExternalLink size={14} />
                   </a>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg flex items-start gap-4">
+              <motion.div
+                whileHover={{ y: -6, scale: 1.01 }}
+                transition={{ type: "spring", stiffness: 240, damping: 18 }}
+                className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg flex items-start gap-4 border border-white/5"
+              >
                 <div className="bg-primary/20 p-3 rounded-full">
                   <Phone className="h-6 w-6 text-primary" />
                 </div>
@@ -109,9 +127,13 @@ const Contact = () => {
                     <ExternalLink size={14} />
                   </a>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg flex items-start gap-4">
+              <motion.div
+                whileHover={{ y: -6, scale: 1.01 }}
+                transition={{ type: "spring", stiffness: 240, damping: 18 }}
+                className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg flex items-start gap-4 border border-white/5"
+              >
                 <div className="bg-primary/20 p-3 rounded-full">
                   <MapPin className="h-6 w-6 text-primary" />
                 </div>
@@ -121,7 +143,7 @@ const Contact = () => {
                   <p className="text-primary">Rio de Janeiro, Brasil</p>
                   <p className="text-primary">Nova Friburgo, Brasil</p>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
 
@@ -133,7 +155,11 @@ const Contact = () => {
             className="space-y-8"
           >
             {/* CV Download */}
-            <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg">
+            <motion.div
+              whileHover={{ y: -6, scale: 1.01 }}
+              transition={{ type: "spring", stiffness: 240, damping: 18 }}
+              className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-white/5"
+            >
               <h3 className="text-xl font-semibold mb-4">Currículo</h3>
               <p className="text-gray-300 mb-4">
                 Baixe meu currículo completo para mais informações sobre minha experiência e habilidades.
@@ -146,10 +172,14 @@ const Contact = () => {
                 <FileText size={18} />
                 Download CV
               </a>
-            </div>
+            </motion.div>
 
             {/* Social Media */}
-            <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg">
+            <motion.div
+              whileHover={{ y: -6, scale: 1.01 }}
+              transition={{ type: "spring", stiffness: 240, damping: 18 }}
+              className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-white/5"
+            >
               <h3 className="text-xl font-semibold mb-4">Redes Sociais</h3>
               <p className="text-gray-300 mb-6">
                 Conecte-se comigo nas redes sociais para acompanhar meus projetos e atualizações.
@@ -181,7 +211,7 @@ const Contact = () => {
                   <Mail size={24} />
                 </a>
               </div>
-            </div>
+            </motion.div>
             
           </motion.div>
         </div>
@@ -192,42 +222,54 @@ const Contact = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.4 }}
-        className="container mx-auto px-4 md:px-6 py-16"
+        className="container mx-auto px-4 md:px-6 py-16 relative z-10"
       >
         <h2 className="text-3xl font-bold mb-10 text-center">Perguntas Frequentes</h2>
 
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg">
+          <motion.div
+            whileHover={{ y: -6 }}
+            className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-white/5"
+          >
             <h3 className="text-xl font-semibold mb-3">Qual é o seu processo de trabalho?</h3>
             <p className="text-gray-300">
               Meu processo inclui uma fase inicial de descoberta, seguida por planejamento, design, desenvolvimento,
               testes e lançamento. Mantenho comunicação constante durante todo o projeto.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg">
+          <motion.div
+            whileHover={{ y: -6 }}
+            className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-white/5"
+          >
             <h3 className="text-xl font-semibold mb-3">Quanto tempo leva para concluir um projeto?</h3>
             <p className="text-gray-300">
               O tempo varia dependendo da complexidade do projeto. Um site simples pode levar 2-3 semanas, enquanto
               projetos mais complexos podem levar vários meses.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg">
+          <motion.div
+            whileHover={{ y: -6 }}
+            className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-white/5"
+          >
             <h3 className="text-xl font-semibold mb-3">Você trabalha com clientes internacionais?</h3>
             <p className="text-gray-300">
               Sim! Trabalho com clientes de todo o mundo. A comunicação é feita principalmente por email, videochamadas
               e ferramentas de gerenciamento de projetos.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg">
+          <motion.div
+            whileHover={{ y: -6 }}
+            className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-white/5"
+          >
             <h3 className="text-xl font-semibold mb-3">Quais tecnologias você utiliza?</h3>
             <p className="text-gray-300">
               Trabalho principalmente com React, TypeScript, Next.js e Tailwind CSS para front-end. Para back-end,
               utilizo Node.js, Express e bancos de dados SQL/NoSQL.
             </p>
-          </div>
+          </motion.div>
         </div>
       </motion.div>
     </div>
