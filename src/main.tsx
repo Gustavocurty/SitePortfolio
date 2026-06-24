@@ -1,14 +1,17 @@
-import { StrictMode } from 'react'
+import { StrictMode, Suspense, lazy } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
-import Home from './screens/Home.tsx';
-import Contact from './screens/Contact.tsx';
-import Portfolio from './screens/Portfolio.tsx';
-import App from './App.tsx';
-import ErrorPage from './screens/error/Error.tsx';
+import App from './App'
+import ErrorPage from './screens/error/Error'
+import { ThemeProvider } from './contexts/ThemeContext'
+import { PageLoader } from './components/ui/page-loader'
+
+const Home = lazy(() => import('./screens/Home'))
+const Contact = lazy(() => import('./screens/Contact'))
+const Portfolio = lazy(() => import('./screens/Portfolio'))
 
 const router = createBrowserRouter([
   {
@@ -17,23 +20,25 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path:"/",
-        element: <Home />
+        path: "/",
+        element: <Suspense fallback={<PageLoader />}><Home /></Suspense>
       },
       {
-        path:"/contatos",
-        element: <Contact />
+        path: "/contatos",
+        element: <Suspense fallback={<PageLoader />}><Contact /></Suspense>
       },
       {
-        path:"/portfolio",
-        element: <Portfolio />
+        path: "/portfolio",
+        element: <Suspense fallback={<PageLoader />}><Portfolio /></Suspense>
       },
     ]
   }
-]);
+])
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </StrictMode>,
 )

@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { cn } from "../utils/cn"
+import { cn } from "../../utils/cn"
 
 type ButtonVariant = "default" | "outline" | "secondary" | "destructive" | "ghost" | "link"
 type ButtonSize = "default" | "sm" | "lg" | "icon"

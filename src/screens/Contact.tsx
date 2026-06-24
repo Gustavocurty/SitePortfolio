@@ -1,9 +1,7 @@
-"use client"
-
-import type React from "react"
-import { useState } from "react"
+import { useState, type ChangeEvent } from "react"
 import { motion } from "framer-motion"
-import { Github, Linkedin, Mail, Phone, MapPin, Send, FileText, ExternalLink } from "lucide-react"
+import { Github, Linkedin, Mail, Phone, MapPin, FileText, ExternalLink, Send, CheckCircle } from "lucide-react"
+import curriculoPDF from "../assets/Curriculo.pdf"
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -16,7 +14,7 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({
       ...prev,
@@ -27,28 +25,11 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-
-    // Simulando envio do formulário
     await new Promise((resolve) => setTimeout(resolve, 1500))
-
-    // Aqui você adicionaria a lógica real de envio do formulário
-    // Por exemplo, usando fetch para enviar para uma API
-
     setIsSubmitting(false)
     setSubmitSuccess(true)
-
-    // Resetar o formulário após envio bem-sucedido
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    })
-
-    // Resetar a mensagem de sucesso após alguns segundos
-    setTimeout(() => {
-      setSubmitSuccess(false)
-    }, 5000)
+    setFormData({ name: "", email: "", subject: "", message: "" })
+    setTimeout(() => setSubmitSuccess(false), 5000)
   }
 
   return (
@@ -154,6 +135,106 @@ const Contact = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="space-y-8"
           >
+            {/* Form */}
+            <motion.div
+              whileHover={{ y: -4, scale: 1.01 }}
+              transition={{ type: "spring", stiffness: 240, damping: 18 }}
+              className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl shadow-lg border border-white/5"
+            >
+              <h3 className="text-xl font-semibold mb-6">Envie uma Mensagem</h3>
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1.5">
+                      Nome
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-2.5 bg-gray-700/50 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                      placeholder="Seu nome"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1.5">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-2.5 bg-gray-700/50 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                      placeholder="seu@email.com"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-1.5">
+                    Assunto
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-2.5 bg-gray-700/50 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                    placeholder="Assunto da mensagem"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1.5">
+                    Mensagem
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    rows={5}
+                    className="w-full px-4 py-2.5 bg-gray-700/50 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none"
+                    placeholder="Sua mensagem..."
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full flex items-center justify-center gap-2 py-3 px-6 bg-primary hover:bg-primary-light text-white rounded-lg font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                    >
+                      <Send size={18} />
+                    </motion.div>
+                  ) : (
+                    <Send size={18} />
+                  )}
+                  {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
+                </button>
+                {submitSuccess && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex items-center gap-2 text-green-400 bg-green-400/10 p-3 rounded-lg"
+                  >
+                    <CheckCircle size={18} />
+                    Mensagem enviada com sucesso! Entrarei em contato em breve.
+                  </motion.div>
+                )}
+              </form>
+            </motion.div>
+
             {/* CV Download */}
             <motion.div
               whileHover={{ y: -6, scale: 1.01 }}
@@ -165,7 +246,7 @@ const Contact = () => {
                 Baixe meu currículo completo para mais informações sobre minha experiência e habilidades.
               </p>
               <a
-                href="src/assets/Curriculo.pdf"
+                href={curriculoPDF}
                 download="Curriculo_Gustavo_Curty.pdf"
                 className="inline-flex items-center gap-2 py-3 px-6 bg-gray-700 hover:bg-gray-600 rounded-md font-medium transition-colors"
               >
